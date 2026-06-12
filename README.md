@@ -18,7 +18,7 @@ To feed the creative copy layout designed by the marketing team, the analytics e
 
 | Data Points | Campaign Email Module | Business Requirement | Analytical Engine Implementation Logic |
 | :---: | :--- | :--- | :--- |
-| **1 & 4** | **Top 2 Categories** | Identify the top two content genres for each user based on lifetime rental velocity. | Aggregates views per customer across category dimensions; applies `ROW_NUMBER()` windowing partitioned by customer descending. |
+| **1 & 4** | **Top 2 Categories** | Identify the top two content genres for each user based on lifetime rental velocity. | Aggregates views per customer across category dimensions; applies `DENSE_RANK()` windowing partitioned by customer descending. |
 | **2** | **Primary Category Insights** | Calculate consumption depth within favorite genre: total watched, cohort average comparison, and percentile. | Computes raw count, derives global category averages via analytical windows, and utilizes `PERCENT_RANK()` across the database. |
 | **5** | **Secondary Category Insights** | Quantify relative engagement within the runner-up favorite genre. | Extracts secondary category totals and divides them by absolute lifetime customer views to establish a precise percentage share. |
 | **3 & 6** | **Category Film Recommendations** | Extract 3 highly popular, trending titles within the Top 2 genres that the user has **never** rented. | Excludes customer watch lists from available inventory; ranks residual titles via global rental counts to select the top 3. |
