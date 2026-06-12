@@ -66,4 +66,37 @@ The data pipeline structures raw, highly normalized relational entities into fla
 [Recommendation Array Generation] ──► (Selects top 3 trending titles for final production)
 
 
+---
 
+## 6. Exception Handling & Business Logic Constraints
+To ensure a seamless user experience, the analytics framework handles data limitations using explicit fallback logic, generating exception flags that tell the marketing platform how to adapt the email layout:
+
+| Pipeline Trigger Event | Generated Integrity Flag | Automated UI / Marketing Adaptation |
+| :--- | :--- | :--- |
+| **Ultra-New / Lower Activity User**<br>(Insufficient historical data footprint) | `FLAG_ZERO_HISTORY_EXCLUSION` | Suppress the personalized email entirely; route the customer to a curated "Trending Platform Favorites" template. |
+| **Skewed Historical Affinity**<br>(Customer has only rented from 1 category lifecycle) | `FLAG_SINGLE_CATEGORY_FALLBACK` | Dynamically restructure layout: replace the secondary category section with a universal top-rated platform recommendation module. |
+| **Saturated Category Footprint**<br>(Customer has watched all available movies in their top genres) | `FLAG_INSUFFICIENT_REC_COUNT` | Backfill empty recommendation slots using collaborative filtering recommendations from adjacent, unexplored categories. |
+| **Actor Recommendation Deficiency**<br>(Fewer than 3 un-watched films exist for their favorite actor) | `FLAG_ACTOR_REC_SHORTFALL` | Dynamically pull high-performing platform releases sharing the same director or thematic keywords. |
+
+---
+
+## 7. Executive Business Intelligence Dashboard Architecture
+To give stakeholders full operational visibility before launching the campaign, a specialized, dual-layered BI layout was designed to verify campaign readiness.
+
+### Dashboard Core KPIs
+* **Audience Readiness Volume:** Count of clean, fully enriched customer records ready for immediate delivery.
+* **Pipeline Exception Failure Rate:** Running breakdown tracking the distribution of safety fallback triggers.
+* **Inventory Utilization Index:** Rate indicating how evenly the recommendation engine draws from the active content catalog.
+
+### Structural Interface Layout
+* **Tab 1: Campaign Validation & Data Integrity Ledger**
+  * Contains heavy metrics cards reflecting data readiness across geographic regions.
+  * Displays horizontal bar tracking of generated Exception Flags to let analysts quickly identify configuration bottlenecks.
+* **Tab 2: Customer Affinity Profiles & Catalog Distribution Analytics**
+  * Displays an interactive tree-map of customer distributions grouped by their #1 primary category.
+  * Generates scatter plot distributions comparing individual consumption volume against average rental periods to reveal user engagement cohorts.
+
+### Global Slicers & Filters
+* `Customer Membership Status Tier` (e.g., Basic, Premium, Corporate)
+* `Geographic Demographics / Store Location ID`
+* `Data Integrity State` (Fully Validated vs. Flagged for Exception Restructuring)
