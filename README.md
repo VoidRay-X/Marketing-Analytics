@@ -51,18 +51,18 @@ Prior to triggering the recommendations matrix, an exhaustive data audit protoco
 ## 5. Pipeline ETL Processing Methodology
 The data pipeline structures raw, highly normalized relational entities into flattened analytic states through five distinct calculation phases:
 
-[Ingestion & Multi-Table Joins]
-│
-▼
+[Ingestion & Multi-Table Joins] 
+       │
+       ▼
 [Aggregation Vector Engine]  ──► (Calculates customer-category & customer-actor counts)
-│
-▼
+       │
+       ▼
 [Window Optimization Engine] ──► (Computes cohort statistics & percentiles simultaneously)
-│
-▼
+       │
+       ▼
 [Antijoin Exclusion Filters] ──► (Removes specific customer watch histories)
-│
-▼
+       │
+       ▼
 [Recommendation Array Generation] ──► (Selects top 3 trending titles for final production)
 
 
