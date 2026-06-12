@@ -29,7 +29,7 @@ To feed the creative copy layout designed by the marketing team, the analytics e
 ## 3. Architecture & Enterprise Technology Stack
 To execute this with corporate-grade scale and reproducible isolation, a decoupled Modern Data Stack (MDS) strategy was defined:
 * **Relational Core Database Engine (Microsoft SQL Server / SSMS): Selected as the data source and heavy calculation environment. Managed via SQL Server Management Studio (SSMS), the platform utilizes T-SQL relational algebra to allow optimized execution of complex relational joins, analytical subqueries, and advanced windowing functions (e.g., DENSE_RANK(), PERCENT_RANK()).
-* **Data Processing & Validation Layer (Python - Pandas & SQLAlchemy):** Used for analytical orchestration, pulling optimized data batches, programmatically running quality metrics, and exporting final validated datasets.
+* **Data Processing & Validation Layer (SQL Server / SSMS): Managed entirely within SQL Server Management Studio using native database stored procedures and scheduled jobs. This layer orchestrates data pipelines, programmatically executes data quality metrics and validation constraints, and automates the export of final validated datasets directly at the database level.
 * **Business Intelligence Framework (Tableau / Power BI):** Deployed to grant key project stakeholders total operational transparency over pipeline health and catalog coverage prior to campaign deployment.
 
 ---
